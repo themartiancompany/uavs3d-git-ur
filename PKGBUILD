@@ -136,13 +136,13 @@ package() {
     install
   install \
     -Dm755 \
-    "${_pkg}/build/linux/${_pkg}dec" \
+    "${_pkg}/build/linux/${_proj}dec" \
     -t \
     "${pkgdir}/usr/bin"
   install \
     -Dm755 \
-    "${_pkg}-10bit/build/linux/${_pkg}dec" \
-    "${pkgdir}/usr/bin/${_pkg}dec-10bit"
+    "${_pkg}-10bit/build/linux/${_proj}dec" \
+    "${pkgdir}/usr/bin/${_proj}dec-10bit"
   install \
     -Dm644 \
     "${_pkg}/COPYING" \
