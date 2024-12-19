@@ -7,9 +7,10 @@
 _os="$( \
   uname \
     -o)"
-_pkg=uavs3d
+_proj="uavs3"
+_pkg="${_proj}d"
 pkgname="${_pkg}-git"
-pkgver=1.1.r40.g818a0cb
+pkgver=1.1.r47.g1fd0491
 pkgrel=1
 _pkgdesc=(
   'An AVS3 decoder supporting'
@@ -26,7 +27,7 @@ arch=(
   'powerpc'
 )
 _http="https://github.com"
-_ns="${_pkg}"
+_ns="${_proj}"
 url="${_http}/${_ns}/${_pkg}"
 license=(
   'BSD'
@@ -96,32 +97,31 @@ build() {
     -DCMAKE_INSTALL_PREFIX:PATH='/usr'
     -DCMAKE_SKIP_RPATH:BOOL='YES'
     -DBUILD_SHARED_LIBS:BOOL='ON'
-    -Wno-dev
   )
   cd \
     "${_pkg}"
   cmake \
     -B \
-      "build/linux" \
+      build/linux \
     -S \
       . \
     "${_cmake_opts[@]}" \
-    -DCOMPILE_10BIT='0' \
+    -DCOMPILE_10BIT='0'
   make \
     -C \
-      "build/linux"
+      build/linux
   cd \
     "${srcdir}/${_pkg}-10bit"
   cmake \
     -B \
-      "build/linux" \
+      build/linux \
     -S \
       . \
     "${_cmake_opts[@]}" \
-    -DCOMPILE_10BIT='1' \
+    -DCOMPILE_10BIT='1'
   make \
     -C \
-      "build/linux"
+      build/linux
 }
 
 package() {
